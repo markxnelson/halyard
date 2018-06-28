@@ -23,6 +23,4 @@ public class WerckerCommandProperties {
   static final String TOKEN_DESCRIPTION = "The personal token of the Wercker user to authenticate as.";
 
   static final String ADDRESS_DESCRIPTION = "The address your Wercker master is reachable at.";
-
-  static final String ORGANIZATIONS_DESCRIPTION = "An list of organizations to get Wercker applications from.";
 }

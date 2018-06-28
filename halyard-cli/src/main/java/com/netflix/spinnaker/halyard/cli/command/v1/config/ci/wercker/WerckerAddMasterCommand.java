@@ -28,6 +28,7 @@ import com.netflix.spinnaker.halyard.config.model.v1.node.Master;
 
 @Parameters(separators = "=")
 public class WerckerAddMasterCommand extends AbstractAddMasterCommand {
+  @Override
   protected String getCiName() {
     return "wercker";
   }
@@ -52,20 +53,12 @@ public class WerckerAddMasterCommand extends AbstractAddMasterCommand {
   )
   public String token;
 
-  @Parameter(
-    names = "--organizations",
-    variableArity = true,
-    description = WerckerCommandProperties.ORGANIZATIONS_DESCRIPTION
-  )
-  public List<String> organizations = new ArrayList<>();
-
   @Override
   protected Master buildMaster(String masterName) {
     WerckerMaster master = (WerckerMaster) new WerckerMaster().setName(masterName);
     master.setAddress(address)
         .setToken(token)
-        .setUser(user)
-        .setOrganizations(organizations);
+        .setUser(user);
 
     return master;
   }

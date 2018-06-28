@@ -51,19 +51,11 @@ public class WerckerEditMasterCommand extends AbstractEditMasterCommand<WerckerM
   )
   public String token;
 
-  @Parameter(
-    names = "--organizations",
-    variableArity = true,
-    description = WerckerCommandProperties.ORGANIZATIONS_DESCRIPTION
-  )
-  public List<String> organizations = new ArrayList<>();
-
   @Override
   protected Master editMaster(WerckerMaster master) {
     master.setAddress(isSet(address) ? address : master.getAddress());
     master.setUser(isSet(user) ? user : master.getUser());
     master.setToken(isSet(token) ? token : master.getToken());
-    master.setOrganizations(isSet(organizations) ? organizations : master.getOrganizations());
 
     return master;
   }
