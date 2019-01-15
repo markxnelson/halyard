@@ -26,9 +26,11 @@ import com.netflix.spinnaker.halyard.core.error.v1.HalException;
 import com.netflix.spinnaker.halyard.core.problem.v1.Problem;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.SpinnakerServiceProvider;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.bake.debian.BakeDebianServiceProvider;
+import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.distributed.DistributedServiceProvider;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.distributed.google.GoogleDistributedServiceProvider;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.distributed.kubernetes.v1.KubernetesV1DistributedServiceProvider;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.distributed.kubernetes.v2.KubectlServiceProvider;
+import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.distributed.oracle.OracleDistributedServiceProvider;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.local.debian.LocalDebianServiceProvider;
 import com.netflix.spinnaker.halyard.deploy.spinnaker.v1.service.local.git.LocalGitServiceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,9 @@ public class ServiceProviderFactory {
 
   @Autowired
   GoogleDistributedServiceProvider googleDistributedServiceProvider;
+
+  @Autowired
+  OracleDistributedServiceProvider oracleDistributedServiceProvider;
 
   @Autowired
   LocalDebianServiceProvider localDebianServiceProvider;
@@ -98,6 +103,8 @@ public class ServiceProviderFactory {
         }
       case GOOGLE:
         return googleDistributedServiceProvider;
+      case ORACLE:
+        return oracleDistributedServiceProvider;
       default:
         throw new IllegalArgumentException("No Clustered Simple Deployment for " + providerType.getName());
     }
